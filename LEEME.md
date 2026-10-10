@@ -53,7 +53,7 @@ El comentario del SQL dice por error «A: Pendiente». Se siguen los valores per
 
 Cada repositorio extiende `JpaRepository<Entidad, Integer>`. `findAllByOrderByNroOrdenDesc()` lista del número mayor al menor.
 
-El PDF nuevo pide servicios con sus implementaciones: se crean interfaces `RubroService`, `ProveedorService` y `OrdenCompraService`, y sus clases `...ServiceImpl` en `service/impl`. Las implementaciones conservan `@Service`, `@RequiredArgsConstructor`, las dependencias `private final` y los métodos del ejemplo `getAll`, `getOne`, `create` y `update`. Se conservan `ResultadoResponse`, `Alert.sweetToast` y el flujo con `RedirectAttributes`.
+Por tu indicación, los servicios son clases concretas `RubroService`, `ProveedorService` y `OrdenCompraService` directamente dentro de `service`, como en tu ejemplo original. Cada clase contiene su lógica y conserva `@Service`, `@RequiredArgsConstructor` y las dependencias `private final`. Se mantienen los métodos `getAll`, `getOne`, `create` y `update`; no hay interfaces de servicio ni carpeta `impl`. Se conservan `ResultadoResponse`, `Alert.sweetToast` y el flujo con `RedirectAttributes`.
 
 `OrdenCompraController` usa `@Controller` y atiende:
 
@@ -133,7 +133,7 @@ Los commits incluidos registran el trabajo real de esta adaptación; no modifica
 | --- | --- |
 | Entidades y relaciones JPA | Tres clases model con nombres HermozaJose, dos ManyToOne y tres AUTO_INCREMENT |
 | Repositorios JpaRepository | RubroRepository, ProveedorRepository, OrdenCompraRepository |
-| Servicios e implementaciones | Tres interfaces y tres clases ServiceImpl |
+| Servicios | Tres clases concretas @Service con Lombok, según tu indicación |
 | Listado descendente y datos relacionados | Servicio, controller y tabla Thymeleaf |
 | Monto con currency | #numbers.formatCurrency y locale es_PE |
 | Registrar con combo | nuevo...html, /registrar, estado inicial P |

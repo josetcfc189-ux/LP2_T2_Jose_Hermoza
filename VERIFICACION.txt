@@ -50,3 +50,7 @@ El SQL principal corresponde al profesor; se incluye también la variante anime 
 39. Los envíos inválidos no alteran el total
 40. El listado admite rubro y página web NULL del esquema
 41. Prueba Maven del contexto Spring adaptado
+
+Actualización solicitada: servicios concretos con @Service y @RequiredArgsConstructor; sin interfaces ni carpeta impl.
+Compilación del nuevo JAR: PASS. Se repitieron las 41 comprobaciones sobre el JAR actualizado: PASS.
+Inspección del JAR: contiene solamente las tres clases de servicio; no contiene clases service/impl.
