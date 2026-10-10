@@ -1,0 +1,52 @@
+VERIFICACIÓN DE LA ADAPTACIÓN DE EXAMEN.zip
+
+Compilación Maven: PASS
+Contexto Spring Boot: PASS
+Pruebas funcionales: 41 comprobaciones PASS
+Java 21.0.12; Spring Boot 4.1.1; MariaDB 10.11.14 con MySQL Connector/J.
+Se probaron la aplicación real, las respuestas Thymeleaf y la persistencia en una base temporal.
+No se realizó revisión visual en navegador.
+La clase principal, el test, HomeController, Alert y ResultadoResponse se conservan sin cambios de bytes respecto de la base.
+El SQL principal corresponde al profesor; se incluye también la variante anime opcional.
+
+1. database_t2.sql: tbl_rubro con 5 filas
+2. database_t2.sql: tbl_proveedor con 10 filas
+3. database_t2.sql: tbl_orden_compra con 18 filas
+4. database_anime_opcional.sql: tbl_rubro con 5 filas
+5. database_anime_opcional.sql: tbl_proveedor con 10 filas
+6. database_anime_opcional.sql: tbl_orden_compra con 18 filas
+7. El estado predeterminado del SQL es P
+8. Arranque de Spring Boot con validate sobre las tres tablas
+9. Listado descendente del 18 al 1
+10. Fecha y dirección del SQL original
+11. Proveedor con RUC y razón social concatenados
+12. Rubro y página web de la relación JPA
+13. Monto con currency PEN y dos decimales
+14. Estados descriptivos P/C/A
+15. Botón Nuevo y enlaces de edición
+16. Ruta inicial redirige al listado
+17. Nuevo carga los 10 proveedores
+18. Combo con RUC y razón social
+19. Nuevo no contiene selección de estado
+20. Edición carga número, monto, dirección y fecha
+21. Edición preselecciona proveedor y estado
+22. Edición tiene botón Guardar
+23. Registro redirige y muestra el mensaje exacto
+24. Registro persiste y fuerza estado Pendiente
+25. El registro no sobrescribe la orden enviada como ID
+26. Campos anidados no modifican proveedores
+27. Actualización redirige y muestra el mensaje exacto
+28. Actualiza todos los campos sin duplicar la orden
+29. El proveedor actualizado queda seleccionado
+30. Monto negativo rechazado
+31. Más de dos decimales rechazado
+32. Proveedor inexistente rechazado
+33. Dirección vacía rechazado
+34. Fecha inválida rechazado
+35. Estado inválido rechazado
+36. Formulario vacío muestra error y conserva el combo
+37. Actualizar número inexistente no crea otra orden
+38. Editar número inexistente vuelve al listado
+39. Los envíos inválidos no alteran el total
+40. El listado admite rubro y página web NULL del esquema
+41. Prueba Maven del contexto Spring adaptado

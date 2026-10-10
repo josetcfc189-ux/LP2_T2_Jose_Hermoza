@@ -19,11 +19,12 @@
 						<h1 class="card-title">Listado de órdenes de compra</h1>
 					</div>
 					<div class="col-md-2">
-						<a href="#" class="btn btn-success w-100"> <i class="fa-solid fa-plus"></i>
+						<a th:href="@{/ordenCompra/nuevo}" class="btn btn-success w-100"> <i class="fa-solid fa-plus"></i>
 							Nuevo
 						</a>
 					</div>
 				</div>
+				<div th:if="${mensajeExito}" class="alert alert-success" role="alert" th:text="${mensajeExito}"></div>
 				<div class="table-responsive" style="max-width: 1400px; overflow-x: auto;">
 					<table class="table table-hover">
 						<thead class="table-dark text-center">
@@ -40,17 +41,17 @@
 							</tr>
 						</thead>
 						<tbody class="table-secondary text-nowrap">
-							<tr>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
+							<tr th:each="item : ${lstOrdenesCompra}">
+								<td th:text="${item.nroOrden}" class="text-center"></td>
+								<td th:text="${item.fechaEntrega}"></td>
+								<td th:text="${item.direccionEntrega}"></td>
+								<td th:text="${item.proveedor.ruc + ' - ' + item.proveedor.razonSocial}"></td>
+								<td th:text="${item.proveedor.rubro != null ? item.proveedor.rubro.denominacion : ''}"></td>
+								<td th:text="${item.proveedor.paginaWeb}"></td>
+								<td th:text="${#numbers.formatCurrency(item.monto)}"></td>
+								<td th:text="${item.estadoDescripcion}"></td>
 								<td class="text-center align-middle">
-									<a href="#" class="btn btn-outline-primary" title="Editar">
+									<a th:href="@{/ordenCompra/edicion/{numero}(numero=${item.nroOrden})}" class="btn btn-outline-primary" title="Editar">
 										<i class="fa-regular fa-pen-to-square"></i>
 									</a>
 								</td>
@@ -61,6 +62,7 @@
 			</div>
 		</div>
 	</div>
+	<div th:utext="${alert}"></div>
 </body>
 
 </html>

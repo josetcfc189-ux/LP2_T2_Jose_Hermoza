@@ -14,33 +14,36 @@
 	<div class="container mt-5">
 		<div class="card shadow-lg">
 			<div class="card-body">
-				<h1 class="card-title text-center">Orden de compra edición - Nro. X</h1>
+				<h1 class="card-title text-center" th:text="'Orden de compra edición - Nro. ' + ${ordenCompra.nroOrden}"></h1>
 				<div class="row d-flex justify-content-center">
 					<div class="col-md-6">
-						<form class="row g-2" method="post" novalidate>
+						<form class="row g-2" method="post" th:action="@{/ordenCompra/guardar}" th:object="${ordenCompra}">
+							<input type="hidden" th:field="*{nroOrden}">
+							<div th:if="${mensajeError}" class="alert alert-danger" role="alert" th:text="${mensajeError}"></div>
 							<div class="col-md-6 position-relative">
 								<label for="proveedor" class="form-label">Proveedor</label>
-								<select class="form-select" id="proveedor" name="proveedor" required>
+								<select class="form-select" id="proveedor" name="proveedor" th:field="*{proveedor}" required>
 									<option value="">--Seleccione--</option>
+									<option th:each="item : ${lstProveedores}" th:value="${item.idProveedor}" th:text="${item.ruc + ' - ' + item.razonSocial}"></option>
 								</select>
 							</div>
 							<div class="col-md-6 position-relative">
 								<label for="monto" class="form-label">Monto</label>
-								<input type="number" class="form-control" step="0.01" placeholder="0.00" id="monto"
-									name="monto" required>
+								<input type="number" class="form-control" step="0.01" min="0" max="99999999.99" placeholder="0.00" id="monto"
+									name="monto" th:field="*{monto}" required>
 							</div>
 							<div class="col-md-12 position-relative">
 								<label for="direccionEntrega" class="form-label">Dirección de entrega</label>
 								<input type="text" class="form-control" placeholder="Ingrese una dirección de entrega"
-									id="direccionEntrega" name="direccionEntrega" required>
+									maxlength="255" id="direccionEntrega" name="direccionEntrega" th:field="*{direccionEntrega}" required>
 							</div>
 							<div class="col-md-6 position-relative">
 								<label for="fechaEntrega" class="form-label">Fecha de entrega</label>
-								<input type="date" class="form-control" id="fechaEntrega" name="fechaEntrega" required>
+								<input type="date" class="form-control" id="fechaEntrega" name="fechaEntrega" th:field="*{fechaEntrega}" required>
 							</div>
 							<div class="col-md-6 position-relative">
 								<label for="estado" class="form-label">Estado</label>
-								<select class="form-select" id="estado" name="estado" required>
+								<select class="form-select" id="estado" name="estado" th:field="*{estado}" required>
 									<option value="">--Seleccione--</option>
 									<option value="P">Pendiente</option>
 									<option value="C">Completado</option>
@@ -49,12 +52,12 @@
 							</div>
 							<div class="col-md-12 d-flex justify-content-between">
 								<!-- Botón Regresar -->
-								<a href="#" class="btn btn-outline-dark">
+								<a th:href="@{/ordenCompra/listado}" class="btn btn-outline-dark">
 									<i class="fa-solid fa-reply"></i> Regresar
 								</a>
-								<!-- Botón Registrar -->
+								<!-- Botón Guardar -->
 								<button type="submit" class="btn btn-primary">
-									<i class="fa-solid fa-floppy-disk"></i> Registrar
+									<i class="fa-solid fa-floppy-disk"></i> Guardar
 								</button>
 								<!-- Botón Limpiar -->
 								<button type="reset" class="btn btn-secondary">
@@ -67,6 +70,7 @@
 			</div>
 		</div>
 	</div>
+	<div th:utext="${alert}"></div>
 </body>
 
 </html>

@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Copia portable del historial de esta adaptación
+historial_git.bundle
+HISTORIAL_GIT.txt
